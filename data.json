@@ -1,0 +1,56 @@
+[
+{
+    "brand": "Ford",
+    "model": "Focus",
+    "colors": ["blue", "red", "grey"],
+    "year": 2019
+},
+{
+    "brand": "BMW",
+    "model": "3.18",
+    "colors": ["green"],
+    "year": 2015
+},
+{
+    "brand": "Volvo",
+    "model": "S40",
+    "colors": ["grey", "red"],
+    "year": 2012
+},
+{
+    "brand": "Ford-2",
+    "model": "Focus-2",
+    "colors": ["blue", "red", "grey"],
+    "year": 2019
+},
+{
+    "brand": "BMW-2",
+    "model": "3.18",
+    "colors": ["green"],
+    "year": 2015
+},
+{
+    "brand": "Volvo-2",
+    "model": "S40",
+    "colors": ["grey", "red"],
+    "year": 2012
+},
+{
+    "brand": "Ford-3",
+    "model": "Focus",
+    "colors": ["blue", "red", "grey"],
+    "year": 2019
+},
+{
+    "brand": "BMW-3",
+    "model": "3.18",
+    "colors": ["green"],
+    "year": 2015
+},
+{
+    "brand": "Volvo-3",
+    "model": "S40",
+    "colors": ["grey", "red"],
+    "year": 2012
+}
+]

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Javascript Template Literals</title>
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+    <div id="app"></div>
+    <button id="addMore" class="addMore" onclick="addCars(2)">Add More</button>
+
+    <script>
+        let carsData;
+        let initCarCount = 3;
+        let carsDataOld = [];
+        let carsAdd = [];
+
+        let request = new XMLHttpRequest();
+        request.overrideMimeType("application/json");
+        request.open("GET", "data.json", true);
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == "200") {
+                allData = JSON.parse(this.response);
+                console.log(allData);
+
+                allData.forEach(function (item, index, arr) {
+                    if (index < initCarCount) {
+                        carsDataOld.push(item);
+                        carsData = carsDataOld
+                    } else {
+                        carsAdd.push(item);
+                    }
+                });
+
+                console.log(carsData);
+                console.log(carsAdd);
+                init()
+            }
+        }
+
+        request.send();
+
+        function init() {
+            document.getElementById("app").innerHTML = `
+                <h1 class="mainTitle"> Cars ( ${carsData.length} ${checkResultPlural(carsData.length)})</h1>
+                ${carsData.map(carTemplate).join("")}  
+            `;
+        };
+
+        function colors(colors) {
+            return `
+                <h4 class="title">Colors</h4>
+                <ul class="colors">
+                ${colors.map(color => `<li>${color}</li>`).join("")}
+                </ul>
+            `;
+        }
+
+        function carTemplate(car) {
+            return `
+                <div class="car">
+                <h2 class="carBrand">${car.model} <span class="carModel">(${
+                    car.brand
+                })</span></h2>
+                <p><strong>Year:</strong> ${car.year}</p>
+                ${colors(car.colors)}
+                </div>
+            `;
+        }
+
+        function checkResultPlural(carsNum) {
+            if (carsNum > 1) {
+                return "results"
+            } else {
+                return "result"
+            }
+        }
+
+
+        function addCars(addNum) {
+            carsAdd.forEach(function (item, index, arr) {
+                if (index < addNum) {
+                    carsDataOld.push(item);
+                    carsData = carsDataOld;
+                    init()
+                } else {
+
+                }
+            });
+            carsAdd = carsAdd.slice(addNum);
+            console.log(carsAdd)
+            if (!carsAdd.length) {
+                document.getElementById("addMore").remove()
+            }
+        }
+
+        
+    </script>
+</body>
+
+</html>
